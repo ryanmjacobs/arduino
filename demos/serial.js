@@ -39,14 +39,11 @@ var serial = {};
       });
     };
 
+    console.log(this.device_);
+    console.log(this.device_.configuration);
+
     return this.device_.open()
-        .then(() => {
-          if (this.device_.configuration === null) {
-            return this.device_.selectConfiguration(1);
-          }
-        })
-        .then(() => this.device_.claimInterface(2))
-        .then(() => this.device_.selectAlternateInterface(2, 0))
+        .then(() => this.device_.claimInterface(1))
         .then(() => this.device_.controlTransferOut({
             'requestType': 'class',
             'recipient': 'interface',
